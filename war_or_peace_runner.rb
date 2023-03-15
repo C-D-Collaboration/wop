@@ -2,20 +2,12 @@ require './lib/card'
 require './lib/deck'
 require './lib/player'
 require './lib/game'
+require './lib/card_generator'
 
-suits = [:heart, :spade, :diamond, :club]
+filename = "cards.txt"
 
-standard_deck = []
-
-suits.each do |suit|
-  2.upto(10) do |number|
-    standard_deck << Card.new(suit, "#{number}", number)
-  end
-  standard_deck << Card.new(suit, "Jack", 11)
-  standard_deck << Card.new(suit, "Queen", 12)
-  standard_deck << Card.new(suit, "King", 13)
-  standard_deck << Card.new(suit, "Ace", 14)
-end
+cards = CardGenerator.new(filename).cards
+standard_deck = CardGenerator.new(filename).deck(cards)
 
 standard_deck.shuffle!
 
