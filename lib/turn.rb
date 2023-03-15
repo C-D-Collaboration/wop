@@ -1,12 +1,14 @@
 class Turn 
   attr_reader :player1,
               :player2,
-              :spoils_of_war
+              :spoils_of_war,
+              :type
 
   def initialize(player1, player2)
     @player1       = player1
     @player2       = player2
     @spoils_of_war = []
+    @type          = type
   end
 
   def type 
@@ -69,12 +71,10 @@ class Turn
   end
 
   def award_spoils(winner)
-    # @spoils_of_war.shuffle!
     if winner.class == Player 
       until @spoils_of_war.empty? do 
         winner.deck.add_card(@spoils_of_war.shift)
       end
     end
-    # winner.deck.cards.concat(spoils_of_war)
   end
 end
